@@ -62,6 +62,20 @@
 
       <section class="products">
         <h2>Top Products</h2>
+        
+        <!-- Product Search Box -->
+        <div class="search-container">
+          <input 
+            type="text" 
+            id="product-search" 
+            class="search-input" 
+            placeholder="Search products by name or brand..."
+            aria-label="Search products"
+          />
+          <button id="clear-search" class="clear-search" aria-label="Clear search">✕</button>
+        </div>
+        <p id="search-results-count" class="search-results-count"></p>
+        
         <ul class="product-list">
           <li class="product-card">
             <a href="product_pages/marmot-ajax-3.html">
@@ -114,5 +128,6 @@
       &copy;2025 ⛺ SleepOutside ⛺ WDD 330 ⛺ BYU-Idaho for BYU-Pathway
       Worldwide Online
     </footer>
+    <script type="module" src="/js/main.js"></script>
   </body>
 </html>
