@@ -7,7 +7,12 @@ export function qs(selector, parent = document) {
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
+  const item = localStorage.getItem(key);
+  try {
+    return item ? JSON.parse(item) : [];
+  } catch (e) {
+    return [];
+  }
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
@@ -20,4 +25,18 @@ export function setClick(selector, callback) {
     callback();
   });
   qs(selector).addEventListener("click", callback);
+}
+
+// Render a list of items using a template function
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false
+) {
+  if (!parentElement || !Array.isArray(list)) return;
+  if (clear) parentElement.innerHTML = "";
+  const htmlStrings = list.map(templateFn);
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
