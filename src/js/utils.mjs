@@ -8,9 +8,11 @@ export function qs(selector, parent = document) {
 // retrieve data from localstorage
 export function getLocalStorage(key) {
   const item = localStorage.getItem(key);
+  // Return an empty array by default for cart usage to avoid null checks downstream
   try {
     return item ? JSON.parse(item) : [];
   } catch (e) {
+    // If parsing fails for any reason, fall back to empty array
     return [];
   }
 }
@@ -36,7 +38,9 @@ export function renderListWithTemplate(
   clear = false
 ) {
   if (!parentElement || !Array.isArray(list)) return;
-  if (clear) parentElement.innerHTML = "";
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
   const htmlStrings = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
