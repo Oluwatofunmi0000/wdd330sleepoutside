@@ -16,12 +16,6 @@ document.addEventListener('DOMContentLoaded', async () => {
  */
 async function initializeApp() {
   try {
-    // Check if API keys are configured
-    if (!import.meta.env.VITE_EDAMAM_APP_ID) {
-      showConfigurationWarning('Edamam API key not configured');
-      return;
-    }
-
     // Load featured recipes on homepage
     const featuredSection = document.getElementById('featured-list');
     if (featuredSection) {
@@ -108,33 +102,6 @@ window.viewRecipe = function(recipeId) {
   // TODO: Implement recipe detail page
   alert('Recipe detail page coming soon! ID: ' + recipeId);
 };
-
-/**
- * Show configuration warning
- */
-function showConfigurationWarning(message) {
-  const container = document.querySelector('.container');
-  if (!container) return;
-
-  const warning = document.createElement('div');
-  warning.className = 'alert alert-warning';
-  warning.innerHTML = `
-    <h3>⚠️ Configuration Required</h3>
-    <p>${message}</p>
-    <ol>
-      <li>Copy <code>.env.example</code> to <code>.env.local</code></li>
-      <li>Get API keys from:
-        <ul>
-          <li><a href="https://developer.edamam.com/" target="_blank">Edamam</a></li>
-          <li><a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a></li>
-        </ul>
-      </li>
-      <li>Fill in your API keys in <code>.env.local</code></li>
-      <li>Restart the dev server</li>
-    </ol>
-  `;
-  container.insertBefore(warning, container.firstChild);
-}
 
 /**
  * Show error message
